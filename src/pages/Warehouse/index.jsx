@@ -316,7 +316,7 @@ export default () => {
         <div className="warehouse-actions_right">
           <Sort sort={sort} onChangeSort={setSort} />
           <Search
-            placeholder="王老板请输入"
+            placeholder="老板请输入"
             onSearch={setSearchVal}
             style={{ width: 200, marginLeft: 10 }}
             enterButton

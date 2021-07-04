@@ -102,7 +102,7 @@ class App extends Component {
                 textAlign: 'center',
               }}
             >
-              王老板真帅、真有钱
+              老板真帅、真有钱
             </Footer>
           </Layout>
         </Layout>

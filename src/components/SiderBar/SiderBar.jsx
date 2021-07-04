@@ -78,7 +78,7 @@ class SiderBar extends Component {
           unCheckedChildren="深色"
           onChange={this.changnTheme}
         /> */}
-        <div className="side_title">王老板的店</div>
+        <div className="side_title">老板的店</div>
         <Menu theme={theme} mode="inline" selectedKeys={[location.pathname]}>
           {this.renderSiderbar(routersConfig)}
         </Menu>
