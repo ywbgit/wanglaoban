@@ -1,0 +1,9 @@
+.indexlayout {
+  min-height: 100vh !important;
+}
+
+.site-layout .site-layout-background {
+  background: #fff;
+  display: flex;
+  align-items: center;
+}

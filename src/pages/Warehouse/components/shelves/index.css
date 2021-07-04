@@ -1,0 +1,27 @@
+.shelves-total-price {
+  line-height: 30px;
+  margin-bottom: 15px;
+  font-size: 16px;
+  color: #333;
+}
+.shelves-sku-item {
+  display: flex;
+}
+.shelves-sku-item-left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.shelves-sku-item-right {
+  margin-left: 10px;
+}
+.shelves-sku-item-name {
+  color: #333;
+  font-size: 16px;
+  line-height: 20px;
+}
+.shelves-sku-item-wear {
+  color: rgb(165, 165, 165);
+  font-size: 14px;
+  line-height: 20px;
+}
