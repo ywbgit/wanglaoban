@@ -26,7 +26,7 @@ const getWarehouseList = ({ startAssetId, count }) => {
 
 const makeShelves = (itemList) => {
   return instance({
-    method: 'get',
+    method: 'post',
     url: '/trade/v1/sale',
     data: {
       itemList,

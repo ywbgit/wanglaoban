@@ -106,6 +106,7 @@ export default () => {
       .filter((item) => !!item.checked)
       .map((item) => {
         const assetId = _get(item, 'baseItemInfo.assetId', '');
+        const itemId = _get(item, 'baseItemInfo.itemId', '');
         const name = _get(item, 'baseItemInfo.name', '');
         const quantity = _get(item, 'baseItemInfo.quantity', '');
         const imageUrl = _get(item, 'baseItemInfo.imageUrl', '');
@@ -119,6 +120,7 @@ export default () => {
         const autoDeliverPrice = _get(item, 'priceInfo.autoDeliverPrice', '');
         return {
           assetId,
+          itemId,
           name,
           quantity,
           imageUrl,
@@ -194,12 +196,20 @@ export default () => {
 
   const handleToShelves = useCallback((shelvesList) => {
     const itemList = shelvesList.map(
-      ({ assetId, token, sellPrice, lowestPrice, differencePrice }) => ({
+      ({
         assetId,
         token,
         sellPrice,
         lowestPrice,
         differencePrice,
+        itemId,
+      }) => ({
+        assetId,
+        token,
+        sellPrice,
+        lowestPrice,
+        differencePrice,
+        itemId,
       }),
     );
     API.makeShelves(itemList).then((res) => {
