@@ -7,7 +7,7 @@ let steamId = null;
 let appId = null;
 
 const instance = axios.create({
-  timeout: 3000,
+  timeout: 10000,
   baseURL: BASE_URL,
 });
 
