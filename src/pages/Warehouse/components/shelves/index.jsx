@@ -15,10 +15,14 @@ export default (props) => {
   const [isCombine, setIsCombine] = useState(false);
   const [dataSource, setDataSource] = useDataSource(props.data || []);
   const displayData = useMemo(() => {
+    const newDataSource = dataSource.map((item) => {
+      item.combineList = [];
+      return item;
+    });
     if (!isCombine) {
-      return dataSource;
+      return newDataSource;
     }
-    return dataSource.reduce((cur, dataOne) => {
+    return newDataSource.reduce((cur, dataOne) => {
       const isExist = cur.find((curOne) => curOne.name === dataOne.name);
       if (isExist) {
         return cur.map((curOne) => {
@@ -49,21 +53,12 @@ export default (props) => {
   const handleOk = useCallback(() => {
     props.onShelves && props.onShelves(dataSource);
   }, [dataSource]);
-
   const handleCancel = useCallback(() => {
     props.onCancel && props.onCancel();
   }, []);
-
   const handleCombine = useCallback(() => {
     setIsCombine(!isCombine);
-    setDataSource(
-      dataSource.map((item) => {
-        item.combineList = [];
-        return item;
-      }),
-    );
-  }, [isCombine, dataSource]);
-
+  }, [isCombine]);
   const handleChangePrice = useCallback(
     (key, val, record) => {
       return setDataSource(
