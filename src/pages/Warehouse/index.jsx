@@ -38,6 +38,8 @@ const defaultSort = [
     sortDir: 'none',
   },
 ];
+const defaultPageSize = 50;
+const pageSizeOptions = [50, 100, 200, 500];
 
 export default () => {
   const wanglaobanRequestParams = window.localStorage.getItem(
@@ -46,7 +48,7 @@ export default () => {
   const [list, setList] = useState([]);
   const [total, setTotal] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize, setPageSize] = useState(10);
+  const [pageSize, setPageSize] = useState(defaultPageSize);
   const [shelvesVisible, setShelvesVisible] = useState(false);
   const [searchVal, setSearchVal] = useState('');
   const [sort, setSort] = useState(defaultSort);
@@ -112,11 +114,11 @@ export default () => {
         const imageUrl = _get(item, 'baseItemInfo.imageUrl', '');
         const wear = _get(item, 'assetInfo.wear', '');
         const token = _get(item, 'token', '');
-        const manualDeliverPrice = _get(
-          item,
-          'priceInfo.manualDeliverPrice',
-          '',
-        );
+        // const manualDeliverPrice = _get(
+        //   item,
+        //   'priceInfo.manualDeliverPrice',
+        //   '',
+        // );
         const autoDeliverPrice = _get(item, 'priceInfo.autoDeliverPrice', '');
         return {
           assetId,
@@ -126,8 +128,8 @@ export default () => {
           imageUrl,
           wear,
           token,
-          sellPrice: autoDeliverPrice,
-          lowestPrice: manualDeliverPrice,
+          sellPrice: autoDeliverPrice - 0.01,
+          lowestPrice: ((autoDeliverPrice - 0.01) * 0.97).toFixed(2),
           differencePrice: 0.01,
           combineList: [],
         };
@@ -338,6 +340,8 @@ export default () => {
       </div>
       <div className="warehouse-pagination">
         <Pagination
+          defaultPageSize={defaultPageSize}
+          pageSizeOptions={pageSizeOptions}
           current={currentPage}
           onChange={handlePageChange}
           total={searchList.length}
