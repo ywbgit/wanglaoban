@@ -58,7 +58,22 @@ export default (props) => {
   }, []);
   const handleCombine = useCallback(() => {
     setIsCombine(!isCombine);
-  }, [isCombine]);
+    setDataSource(
+      dataSource.reduce((cur, dataOne) => {
+        const existOne = cur.find((curOne) => curOne.name === dataOne.name);
+        if (existOne) {
+          dataOne = {
+            ...dataOne,
+            sellPrice: existOne.sellPrice,
+            differencePrice: existOne.differencePrice,
+            lowestPrice: existOne.lowestPrice,
+          };
+        }
+        cur.push(dataOne);
+        return cur;
+      }, []),
+    );
+  }, [isCombine, dataSource]);
   const handleChangePrice = useCallback(
     (key, val, record) => {
       return setDataSource(
